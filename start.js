@@ -27,12 +27,6 @@ bot.hears('Алкокот привет', (ctx) => {
     }
     return ctx.reply(`Да вы заебали!`)
 })
-bot.hears('АлкоКОТ пошел нахуй', (ctx) => {
-    return ctx.reply(`я не понял, ты быканул что-ли??`)
-})
-bot.hears('АлкоКОТ извинись', (ctx) => {
-    return ctx.reply(`Все свои замечания и претензии в мой адрес, запишите на листочек! Сверните в трубочку… И засуньте себе в ж*пу!!!`)
-})
 bot.hears('АлкоКОТ покажи свое лучше фото', (ctx) => {
     ctx.replyWithPhoto({
         url: 'https://www.zastavki.com/pictures/640x480/2015/Fantasy_Cat_with_gun_mounted_on_a_unicorn_094784_29.jpg',
@@ -41,8 +35,29 @@ bot.hears('АлкоКОТ покажи свое лучше фото', (ctx) => {
 })
 
 bot.on('text', (ctx) => {
+    let messageText = ctx.message.text.toLowerCase()
+    let authorName = ctx.message.from.first_name
+
     if (ctx.message.message_id % 12 === 0){
         return ctx.reply(`${phrase.to[getRandomIntInclusive(0,phrase.to.length-1)]}`)
+    }
+    if (ctx.message.message_id % 20 === 0){
+        return ctx.reply(`${messageText.split(" ")[0]} для питухов!`)
+    }
+    if (messageText.includes('алкокот') || (messageText.includes('алк') && (messageText.includes('кот')))) {
+        if (messageText.includes('привет') || messageText.includes('хай') || messageText.includes('дорова') || messageText.includes('даров')){
+            return ctx.reply(`${authorName} дарова!`)
+        }
+        if (messageText.includes('пошел') && (messageText.includes('хуй') || messageText.includes('гондон') || messageText.includes('тормоз') || messageText.includes('говн'))){
+            return ctx.reply(`${authorName} ты щас пиздюлей получишь!`)
+        }
+        if ((messageText.includes('как') && messageText.includes('дела') || messageText.includes('жизнь')|| messageText.includes('ты')) || ( messageText.includes('хай') || messageText.includes('дорова') || messageText.includes('даров'))) {
+            return ctx.reply(`Ахуенно бля, ${authorName} ты как?`)
+        }
+        if ((messageText.includes('проси') && messageText.includes('прощения')) || messageText.includes('извин') || messageText.includes('извен')) {
+            return ctx.reply(`${authorName} все свои замечания и претензии в мой адрес, запишите на листочек! Сверните в трубочку… И засуньте себе в ж*пу!!!`)
+        }
+        return ctx.reply(`че нада?`)
     }
 })
 
