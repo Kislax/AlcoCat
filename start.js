@@ -44,11 +44,20 @@ bot.on('text', (ctx) => {
     if (ctx.message.message_id % 20 === 0){
         return ctx.reply(`${messageText.split(" ")[0]} для питухов!`)
     }
+    if ((messageText.includes('балт') && messageText.includes('болт')) || messageText.includes('автомат')) {
+        if (messageText.includes('девиз') || messageText.includes('Главное')){
+            return ctx.reply(`Работает, не троЖ!`)
+        }
+        if (messageText.includes('кто ')) {
+            return ctx.reply(`${authorName} ты еще не стал техдиром в БА?`)
+        }
+        return ctx.reply(`Олег малег`)
+    }
     if (messageText.includes('алкокот') || (messageText.includes('алк') && (messageText.includes('кот')))) {
         if (messageText.includes('привет') || messageText.includes('хай') || messageText.includes('дорова') || messageText.includes('даров')){
             return ctx.reply(`${authorName} дарова!`)
         }
-        if (messageText.includes('пошел') && (messageText.includes('хуй') || messageText.includes('гондон') || messageText.includes('тормоз') || messageText.includes('говн'))){
+        if ((messageText.includes('пошел') && messageText.includes('хуй')) || (messageText.includes('гондон') || messageText.includes('тормоз') || messageText.includes('говн'))){
             return ctx.reply(`${authorName} ты щас пиздюлей получишь!`)
         }
         if ((messageText.includes('как') && messageText.includes('дела') || messageText.includes('жизнь')|| messageText.includes('ты')) || ( messageText.includes('хай') || messageText.includes('дорова') || messageText.includes('даров'))) {
