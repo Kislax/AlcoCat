@@ -70,7 +70,6 @@ bot.on('text', (ctx) => {
     }
 })
 
-
 bot.launch()
 
 var app = express();
@@ -87,7 +86,7 @@ var server = app.listen(process.env.PORT  || 5000, function () {
 });
 
 setInterval(() => {
-  http.get("http://https://alcocat.herokuapp.com/", (res) => {})
+  http.get("https://alcocat.herokuapp.com/", (res) => {})
 }, 20 * 60 * 1000)
 
 function getRandomIntInclusive(min, max) {
