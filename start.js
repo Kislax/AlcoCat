@@ -62,6 +62,10 @@ var server = app.listen(process.env.PORT  || 5000, function () {
     console.log('Web server started at http://%s:%s', host, port);
 });
 
+setInterval(() => {
+  http.get("http://https://alcocat.herokuapp.com/", (res) => {})
+}, 20 * 60 * 1000)
+
 function getRandomIntInclusive(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
