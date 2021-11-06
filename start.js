@@ -4,25 +4,25 @@ const { Telegraf } = require('telegraf')
 var express = require('express');
 var packageInfo = require('./package.json');
 
-const bot = new Telegraf(process.env.BOT_TOKEN, {username: 'AlcoNahuibot'})
+const bot = new Telegraf(process.env.BOT_TOKEN, { username: 'AlcoNahuibot' })
 bot.telegram.getMe().then((botInfo) => {
     bot.options.username = botInfo.username
 })
 bot.start((ctx) => ctx.reply('Нехуй думать что ты самый умный'))
 bot.help((ctx) => ctx.reply('да да ХЕЛП, помогите слабаку..'))
 bot.on('sticker', (ctx) => {
-    if (ctx.message.message_id % 3 === 0){
+    if (ctx.message.message_id % 3 === 0) {
         return ctx.reply('💩')
     }
 })
 bot.use(Telegraf.session())
-bot.command('joke', (ctx) => ctx.reply(`${phrase.to[getRandomIntInclusive(0,phrase.to.length-1)]}`))
+bot.command('joke', (ctx) => ctx.reply(`${phrase.to[getRandomIntInclusive(0, phrase.to.length - 1)]}`))
 bot.command('about', (ctx) => ctx.reply(`Хочу пива и спать`))
 bot.hears('Алкокот привет', (ctx) => {
-    if (ctx.message.message_id % 5 === 0){
+    if (ctx.message.message_id % 5 === 0) {
         return ctx.reply(`Мне как — то по**й на твой рост, вес, возраст. Главное, чтобы человек был хороший.`)
     }
-    if (ctx.message.message_id % 2 === 0){
+    if (ctx.message.message_id % 2 === 0) {
         return ctx.reply(`Хай пес`)
     }
     return ctx.reply(`Да вы заебали!`)
@@ -38,20 +38,20 @@ bot.on('text', (ctx) => {
     let messageText = ctx.message.text.toLowerCase(),
         authorName = ctx.message.from.first_name,
         authorLastName = ctx.message.from.first_name,
-        authorId =  ctx.message.from.id,
+        authorId = ctx.message.from.id;
 
-    if (authorName == 'Дима' || authorLastName === 'Федюнин' || authorId ===  322914815){
+    if (authorName == 'Дима' || authorLastName === 'Федюнин' || authorId === 322914815) {
         return ctx.reply(`Нюхай бебру)))`)
     }
 
-    if (ctx.message.message_id % 12 === 0){
-        return ctx.reply(`${phrase.to[getRandomIntInclusive(0,phrase.to.length-1)]}`)
+    if (ctx.message.message_id % 12 === 0) {
+        return ctx.reply(`${phrase.to[getRandomIntInclusive(0, phrase.to.length - 1)]}`)
     }
-    if (ctx.message.message_id % 20 === 0){
+    if (ctx.message.message_id % 20 === 0) {
         return ctx.reply(`${messageText.split(" ")[0]} для питухов!`)
     }
     if ((messageText.includes('балт') && messageText.includes('болт')) || messageText.includes('автомат')) {
-        if (messageText.includes('девиз') || messageText.includes('Главное')){
+        if (messageText.includes('девиз') || messageText.includes('Главное')) {
             return ctx.reply(`Работает, не троЖ!`)
         }
         if (messageText.includes('кто ')) {
@@ -60,13 +60,13 @@ bot.on('text', (ctx) => {
         return ctx.reply(`Олег малег`)
     }
     if (messageText.includes('алкокот') || (messageText.includes('алк') && (messageText.includes('кот')))) {
-        if (messageText.includes('привет') || messageText.includes('хай') || messageText.includes('дорова') || messageText.includes('даров')){
+        if (messageText.includes('привет') || messageText.includes('хай') || messageText.includes('дорова') || messageText.includes('даров')) {
             return ctx.reply(`${authorName} дарова!`)
         }
-        if ((messageText.includes('пошел') && messageText.includes('хуй')) || (messageText.includes('гондон') || messageText.includes('тормоз') || messageText.includes('говн'))){
+        if ((messageText.includes('пошел') && messageText.includes('хуй')) || (messageText.includes('гондон') || messageText.includes('тормоз') || messageText.includes('говн'))) {
             return ctx.reply(`${authorName} ты щас пиздюлей получишь!`)
         }
-        if ((messageText.includes('как') && messageText.includes('дела') || messageText.includes('жизнь')|| messageText.includes('ты')) || ( messageText.includes('хай') || messageText.includes('дорова') || messageText.includes('даров'))) {
+        if ((messageText.includes('как') && messageText.includes('дела') || messageText.includes('жизнь') || messageText.includes('ты')) || (messageText.includes('хай') || messageText.includes('дорова') || messageText.includes('даров'))) {
             return ctx.reply(`Ахуенно бля, ${authorName} ты как?`)
         }
         if ((messageText.includes('проси') && messageText.includes('прощения')) || messageText.includes('извин') || messageText.includes('извен')) {
@@ -84,7 +84,7 @@ app.get('/', function (req, res) {
     res.json({ version: packageInfo.version, status: 'сервис работает' });
 });
 
-var server = app.listen(process.env.PORT  || 5000, function () {
+var server = app.listen(process.env.PORT || 5000, function () {
     var host = server.address().address;
     var port = server.address().port;
 
@@ -92,7 +92,7 @@ var server = app.listen(process.env.PORT  || 5000, function () {
 });
 
 setInterval(() => {
-  http.get("https://alcocat.herokuapp.com/", (res) => {})
+    http.get("https://alcocat.herokuapp.com/", (res) => { })
 }, 20 * 60 * 1000)
 
 function getRandomIntInclusive(min, max) {
