@@ -35,8 +35,14 @@ bot.hears('АлкоКОТ покажи свое лучше фото', (ctx) => {
 })
 
 bot.on('text', (ctx) => {
-    let messageText = ctx.message.text.toLowerCase()
-    let authorName = ctx.message.from.first_name
+    let messageText = ctx.message.text.toLowerCase(),
+        authorName = ctx.message.from.first_name,
+        authorLastName = ctx.message.from.first_name,
+        authorId =  ctx.message.from.id,
+
+    if (authorName == 'Дима' || authorLastName === 'Федюнин' || authorId ===  322914815){
+        return ctx.reply(`Нюхай бебру)))`)
+    }
 
     if (ctx.message.message_id % 12 === 0){
         return ctx.reply(`${phrase.to[getRandomIntInclusive(0,phrase.to.length-1)]}`)
