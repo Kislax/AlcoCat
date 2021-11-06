@@ -41,7 +41,9 @@ bot.on('text', (ctx) => {
         authorId = ctx.message.from.id;
 
     if (authorName == 'Дима' || authorLastName === 'Федюнин' || authorId === 322914815) {
-        return ctx.reply(`Нюхай бебру)))`)
+        if (ctx.message.message_id % 15 === 0) {
+            return ctx.reply(`Нюхай бебру)))`)
+        }
     }
 
     if (ctx.message.message_id % 12 === 0) {
