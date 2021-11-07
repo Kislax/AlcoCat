@@ -50,13 +50,13 @@ bot.on('text', (ctx) => {
             if (ctx.message.message_id % 7 === 0) {
                 return ctx.reply(` ${authorName}, Как жизнь?`)
             }
-            if (ctx.message.message_id % 20 === 0) {
+            if (ctx.message.message_id % 10 === 0) {
                 return ctx.reply(`ты хули не работаешь?`)
             }
             if (ctx.message.message_id % 5 === 0) {
                 return ctx.reply(` ${authorName}, Когда на шашлыки? `)
             }
-            if (ctx.message.message_id % 10 === 0) {
+            if (ctx.message.message_id % 30 === 0) {
                 return ctx.reply(` ${authorName}, ты уволен! :) `)
             }
             if (ctx.message.message_id % 11 === 0) {
@@ -83,16 +83,13 @@ bot.on('text', (ctx) => {
         // Стас 
         if ( authorId === 783472414) {
             if (ctx.message.message_id % 3 === 0) {
-                return ctx.reply(` ${authorName}, че по шифровальщикам?`)
-            }
-            if (ctx.message.message_id % 20 === 0) {
-                return ctx.reply(`ты хули не работаешь?`)
+                return ctx.reply(` ${authorName}, со фласком разобрался??`)
             }
             if (ctx.message.message_id % 5 === 0) {
                 return ctx.reply(` ${authorName}, не хочешь вернуться в БА?`)
             }
             if (ctx.message.message_id % 10 === 0) {
-                return ctx.reply(` ${authorName}, че по видеомониторингу? :) `)
+                return ctx.reply(` ${authorName}, как там видеомониторинг? :) `)
             }
         }
     }
