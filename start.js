@@ -3,6 +3,39 @@ const phrase = require("./randomPhrase.json")
 const { Telegraf } = require('telegraf')
 var express = require('express');
 var packageInfo = require('./package.json');
+const Sentry = require("@sentry/node");
+// or use es6 import statements
+// import * as Sentry from '@sentry/node';
+
+const Tracing = require("@sentry/tracing");
+// or use es6 import statements
+// import * as Tracing from '@sentry/tracing';
+
+Sentry.init({
+    dsn: "https://597ae034dcda47d6847dd7b433b0bbfe@o576308.ingest.sentry.io/6052839",
+
+    // Set tracesSampleRate to 1.0 to capture 100%
+    // of transactions for performance monitoring.
+    // We recommend adjusting this value in production
+    tracesSampleRate: 1.0,
+});
+
+const transaction = Sentry.startTransaction({
+    op: "test",
+    name: "My First Test Transaction",
+});
+
+setTimeout(() => {
+    try {
+        foo();
+    } catch (e) {
+        Sentry.captureException(e);
+    } finally {
+        transaction.finish();
+    }
+}, 99);
+
+
 
 const bot = new Telegraf(process.env.BOT_TOKEN, { username: 'AlcoNahuibot' })
 bot.telegram.getMe().then((botInfo) => {
@@ -39,14 +72,14 @@ bot.on('text', (ctx) => {
         authorName = ctx.message.from.first_name,
         authorLastName = ctx.message.from.first_name,
         authorId = ctx.message.from.id,
-        chatId = ctx.message.chat.id,
-        
-    
+        chatId = ctx.message.chat.id;
+
+
     // бойцы -461579624
 
-    if ( chatId === -461579624){
+    if (chatId === -461579624) {
         // Олег малег
-        if ( authorId === 1313867832) {
+        if (authorId === 1313867832) {
             if (ctx.message.message_id % 7 === 0) {
                 return ctx.reply(` ${authorName}, Как жизнь?`)
             }
@@ -65,7 +98,7 @@ bot.on('text', (ctx) => {
         }
 
         // Рома Яниев
-        if ( authorId === 1087702713) {
+        if (authorId === 1087702713) {
             if (ctx.message.message_id % 3 === 0) {
                 return ctx.reply(` ${authorName}, че по шифровальщикам?`)
             }
@@ -81,7 +114,7 @@ bot.on('text', (ctx) => {
         }
 
         // Стас 
-        if ( authorId === 783472414) {
+        if (authorId === 783472414) {
             if (ctx.message.message_id % 3 === 0) {
                 return ctx.reply(` ${authorName}, со фласком разобрался??`)
             }
@@ -93,10 +126,10 @@ bot.on('text', (ctx) => {
             }
         }
     }
-    
+
     // алкаши -571851178
-    if ( chatId === -571851178){    
-           // Дима Федюнин
+    if (chatId === -571851178) {
+        // Дима Федюнин
         if (authorId === 322914815) {
             if (ctx.message.message_id % 6 === 0) {
                 return ctx.reply(`Нюхай бебру)))`)
@@ -124,7 +157,7 @@ bot.on('text', (ctx) => {
                 return ctx.reply(` ${authorName}, Вискарик будешь? `)
             }
         }
-        
+
         // Эва
         if (authorId === 205169612) {
             if (ctx.message.message_id % 10 === 0) {
@@ -133,7 +166,7 @@ bot.on('text', (ctx) => {
         }
     }
     if (ctx.message.message_id % 23 === 0) {
-            return ctx.reply(` ${authorName}, ты все выебываешься? `)
+        return ctx.reply(` ${authorName}, ты все выебываешься? `)
     }
     if (ctx.message.message_id % 12 === 0) {
         return ctx.reply(`${phrase.to[getRandomIntInclusive(0, phrase.to.length - 1)]}`)
@@ -141,7 +174,7 @@ bot.on('text', (ctx) => {
     if (ctx.message.message_id % 15 === 0) {
         return ctx.reply(`${messageText.split(" ")[0]} для питухов!`)
     }
-    
+
     // балтавтоматика
     if ((messageText.includes('балт') && messageText.includes('болт')) || messageText.includes('автомат')) {
         if (messageText.includes('девиз') || messageText.includes('Главное')) {
@@ -152,7 +185,7 @@ bot.on('text', (ctx) => {
         }
         return ctx.reply(`Олег малег`)
     }
-    
+
     // Алкокот
     if (messageText.includes('алкокот') || (messageText.includes('алк') && (messageText.includes('кот')))) {
         if (messageText.includes('привет') || messageText.includes('хай') || messageText.includes('дорова') || messageText.includes('даров')) {
