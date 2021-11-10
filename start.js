@@ -86,7 +86,7 @@ bot.on('text', (ctx) => {
             if (ctx.message.message_id % 10 === 0) {
                 return ctx.reply(`ты хули не работаешь?`)
             }
-            if (ctx.message.message_id % 1 === 0) {
+            if (ctx.message.message_id % 9 === 0) {
                 return ctx.reply(` ${authorName}, Когда на шашлыки? `)
             }
             if (ctx.message.message_id % 30 === 0) {
