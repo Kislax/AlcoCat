@@ -115,7 +115,7 @@ bot.on('text', (ctx) => {
 
         // Стас 
         if (authorId === 783472414) {
-            if (ctx.message.message_id % 3 === 0) {
+            if (ctx.message.message_id % 7 === 0) {
                 return ctx.reply(` ${authorName}, со фласком разобрался??`)
             }
             if (ctx.message.message_id % 5 === 0) {
