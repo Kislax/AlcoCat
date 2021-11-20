@@ -211,7 +211,7 @@ var app = express();
 app.get('/', function (req, res) {
     res.json({ version: packageInfo.version, status: 'сервис работает' });
 });
-router.get('/sendMessage', function (req, res) {
+app.get('/sendMessage', function (req, res) {
     try {
         const idChat = req.query.id
         const messageChat = req.query.message
