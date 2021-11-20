@@ -211,6 +211,20 @@ var app = express();
 app.get('/', function (req, res) {
     res.json({ version: packageInfo.version, status: 'сервис работает' });
 });
+router.get('/sendMessage', function (req, res) {
+    try {
+        const idChat = req.query.id
+        const messageChat = req.query.message
+        res.send('id: ' + idChat, messageChat);
+    }
+    catch (err) {
+        res.send('error: ' + err);
+    }
+    // res.render('index', { title: 'Express' });
+});
+
+// app.set('views', path.join(__dirname, 'views'));
+// app.set('view engine', 'pug');
 
 var server = app.listen(process.env.PORT || 5000, function () {
     var host = server.address().address;
