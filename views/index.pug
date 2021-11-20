@@ -1,0 +1,28 @@
+doctype html
+html(lang="ru")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        script(src='./autorizate.js')
+        script(src='https://code.jquery.com/jquery-3.1.0.min.js' charset='utf-8')
+        script(src='./socket.io.js')
+        script(src='./script.js')
+        style
+            include style.css
+        title= title
+    body 
+        div
+            .header
+                h1.logo AlcoCat
+                //- ul.menu 
+                //-     li.menu-item
+                .infoblock
+                    status= status
+                    version= 'Версия' + version
+            .container
+                .chatsActived       
+                .chatsWindow
+                    include chatsWindow
+                .chatUsers
+            .footer

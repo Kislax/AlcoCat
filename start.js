@@ -1,40 +1,46 @@
 require('dotenv').config()
-const phrase = require("./randomPhrase.json")
-const { Telegraf } = require('telegraf')
-var express = require('express');
-var packageInfo = require('./package.json');
-const Sentry = require("@sentry/node");
-// or use es6 import statements
-// import * as Sentry from '@sentry/node';
+const phrase = require("./randomPhrase.json");
+const { Telegraf } = require('telegraf');
+const path = require('path');
+const express = require('express');
+const log4js = require('log4js');
+const logger = log4js.getLogger();
+const packageInfo = require('./package.json');
 
-const Tracing = require("@sentry/tracing");
-// or use es6 import statements
-// import * as Tracing from '@sentry/tracing';
 
-Sentry.init({
-    dsn: "https://597ae034dcda47d6847dd7b433b0bbfe@o576308.ingest.sentry.io/6052839",
+var app = express();
+var server = require('http').Server(app)
+var io = require('socket.io')(server);
 
-    // Set tracesSampleRate to 1.0 to capture 100%
-    // of transactions for performance monitoring.
-    // We recommend adjusting this value in production
-    tracesSampleRate: 1.0,
+// var server = server.listen(process.env.PORT || 5000, function () {
+//     var host = server.address().address || localhost;
+//     var port = server.address().port;
+
+//     console.log('Web server started at http://%s:%s', host, port);
+// });
+var port = process.env.PORT || 8847;
+logger.debug('Script has been started...')
+server.listen(port)
+
+const sucLogin = process.env.LOGIN
+const sucPass = process.env.PASS
+
+io.on('connection', function (socket) {
+    socket.emit('autorizate', sucLogin, sucPass);
+    var name = 'U' + (socket.id).toString().substr(1, 4);
+    socket.broadcast.emit('newUser', name);
+
+    logger.info(name + ' connected to chat!');
+    socket.emit('userName', name);
+    // Обработчик ниже // Мы его сделали внутри коннекта
+
+    socket.on('message', function (msg) { // Обработчик на событие 'message' и аргументом (msg) из переменной message
+        logger.warn('-----------'); // Logging
+        logger.warn('User: ' + name + ' | Message: ' + msg);
+        logger.warn('====> Sending message to other chaters...');
+        io.sockets.emit('messageToClients', msg, name); // Отправляем всем сокетам событие 'messageToClients' и отправляем туда же два аргумента (текст, имя юзера)
+    });
 });
-
-const transaction = Sentry.startTransaction({
-    op: "test",
-    name: "My First Test Transaction",
-});
-
-setTimeout(() => {
-    try {
-        foo();
-    } catch (e) {
-        Sentry.captureException(e);
-    } finally {
-        transaction.finish();
-    }
-}, 99);
-
 
 
 const bot = new Telegraf(process.env.BOT_TOKEN, { username: 'AlcoNahuibot' })
@@ -72,8 +78,10 @@ bot.on('text', (ctx) => {
         authorName = ctx.message.from.first_name,
         authorLastName = ctx.message.from.first_name,
         authorId = ctx.message.from.id,
-        chatId = ctx.message.chat.id;
+        chatId = ctx.message.chat.id,
+        chatTitle = ctx.message.chat.title;
 
+    io.sockets.emit('messageBotToClients', chatTitle, authorName, messageText);
 
     // бойцы -461579624
 
@@ -206,10 +214,13 @@ bot.on('text', (ctx) => {
 
 bot.launch()
 
-var app = express();
+
+
+app.use(express.static(path.join(__dirname, 'views')));
+app.set('view engine', 'pug');
 
 app.get('/', function (req, res) {
-    res.json({ version: packageInfo.version, status: 'сервис работает' });
+    res.render('index', { title: 'AlcoCat', status: 'сервис работает', version: packageInfo.version });
 });
 app.get('/sendMessage', function (req, res) {
     try {
@@ -223,15 +234,6 @@ app.get('/sendMessage', function (req, res) {
     // res.render('index', { title: 'Express' });
 });
 
-// app.set('views', path.join(__dirname, 'views'));
-// app.set('view engine', 'pug');
-
-var server = app.listen(process.env.PORT || 5000, function () {
-    var host = server.address().address;
-    var port = server.address().port;
-
-    console.log('Web server started at http://%s:%s', host, port);
-});
 
 setInterval(() => {
     http.get("https://alcocat.herokuapp.com/", (res) => { })
