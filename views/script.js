@@ -1,4 +1,4 @@
-var port = 8847; // Указываем порт на котором у на стоит сокет
+var port = 8846; // Указываем порт на котором у на стоит сокет
 var socket = io.connect('http://localhost:' + port);
 // var socket = io.connect(window.location.host)
 

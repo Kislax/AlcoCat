@@ -18,7 +18,7 @@ var io = require('socket.io')(server);
 
 //     console.log('Web server started at http://%s:%s', host, port);
 // });
-var port = process.env.PORT || 8847;
+var port = process.env.PORT || 8846;
 logger.debug('Script has been started...')
 server.listen(port)
 
