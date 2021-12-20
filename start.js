@@ -88,7 +88,7 @@ bot.on('text', (ctx) => {
     if (chatId === -461579624) {
         // Олег малег
         if (authorId === 1313867832) {
-            if (ctx.message.message_id % 7 === 0) {
+            if (ctx.message.message_id % 8 === 0) {
                 return ctx.reply(` ${authorName}, Как жизнь?`)
             }
             if (ctx.message.message_id % 10 === 0) {
@@ -107,13 +107,13 @@ bot.on('text', (ctx) => {
 
         // Рома Яниев
         if (authorId === 1087702713) {
-            if (ctx.message.message_id % 3 === 0) {
+            if (ctx.message.message_id % 8 === 0) {
                 return ctx.reply(` ${authorName}, че по шифровальщикам?`)
             }
             if (ctx.message.message_id % 20 === 0) {
                 return ctx.reply(`ты хули не работаешь?`)
             }
-            if (ctx.message.message_id % 5 === 0) {
+            if (ctx.message.message_id % 15 === 0) {
                 return ctx.reply(` ${authorName}, не хочешь вернуться в БА?`)
             }
             if (ctx.message.message_id % 10 === 0) {
@@ -123,10 +123,10 @@ bot.on('text', (ctx) => {
 
         // Стас 
         if (authorId === 783472414) {
-            if (ctx.message.message_id % 7 === 0) {
+            if (ctx.message.message_id % 17 === 0) {
                 return ctx.reply(` ${authorName}, со фласком разобрался??`)
             }
-            if (ctx.message.message_id % 5 === 0) {
+            if (ctx.message.message_id % 15 === 0) {
                 return ctx.reply(` ${authorName}, не хочешь вернуться в БА?`)
             }
             if (ctx.message.message_id % 10 === 0) {
@@ -139,13 +139,13 @@ bot.on('text', (ctx) => {
     if (chatId === -571851178) {
         // Дима Федюнин
         if (authorId === 322914815) {
-            if (ctx.message.message_id % 6 === 0) {
+            if (ctx.message.message_id % 15 === 0) {
                 return ctx.reply(`Нюхай бебру)))`)
             }
-            if (ctx.message.message_id % 4 === 0) {
+            if (ctx.message.message_id % 7 === 0) {
                 return ctx.reply(` ${authorName}, ты все выебываешься? `)
             }
-            if (ctx.message.message_id % 7 === 0) {
+            if (ctx.message.message_id % 18 === 0) {
                 return ctx.reply(` ${authorName}, Как жизнь?`)
             }
             if (ctx.message.message_id % 20 === 0) {
@@ -154,21 +154,21 @@ bot.on('text', (ctx) => {
         }
 
         // Вася Эва
-        if (authorId === 322914815) {
-            if (ctx.message.message_id % 3 === 0) {
-                return ctx.reply(`${authorName} сорри, майонеза нет`)
-            }
-            if (ctx.message.message_id % 6 === 0) {
-                return ctx.reply(` ${authorName}, Тебя бабка снизу все ждет`)
-            }
-            if (ctx.message.message_id % 7 === 0) {
-                return ctx.reply(` ${authorName}, Вискарик будешь? `)
-            }
-        }
+//         if (authorId === 322914815) {
+//             if (ctx.message.message_id % 15 === 0) {
+//                 return ctx.reply(`${authorName} `)
+//             }
+//             if (ctx.message.message_id % 6 === 0) {
+//                 return ctx.reply(` ${authorName}, Тебя бабка снизу все ждет`)
+//             }
+//             if (ctx.message.message_id % 10 === 0) {
+//                 return ctx.reply(` ${authorName}, Вискарик будешь? `)
+//             }
+//         }
 
         // Эва
         if (authorId === 205169612) {
-            if (ctx.message.message_id % 10 === 0) {
+            if (ctx.message.message_id % 24 === 0) {
                 return ctx.reply(`${authorName}, тебе бухло разогреть?`)
             }
         }
