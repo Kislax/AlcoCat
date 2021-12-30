@@ -84,10 +84,11 @@ bot.on('text', (ctx) => {
     io.sockets.emit('messageBotToClients', chatTitle, authorName, messageText);
 
     // бойцы -461579624
-
-    if (chatId === -461579624) {
+switch(chatId){
+    case -461579624: {
         // Олег малег
-        if (authorId === 1313867832) {
+        switch(authorId){
+            case 1313867832: {
             if (ctx.message.message_id % 8 === 0) {
                 return ctx.reply(` ${authorName}, Как жизнь?`)
             }
@@ -106,7 +107,7 @@ bot.on('text', (ctx) => {
         }
 
         // Рома Яниев
-        if (authorId === 1087702713) {
+            case 1087702713: {
             if (ctx.message.message_id % 8 === 0) {
                 return ctx.reply(` ${authorName}, че по шифровальщикам?`)
             }
@@ -122,7 +123,7 @@ bot.on('text', (ctx) => {
         }
 
         // Стас 
-        if (authorId === 783472414) {
+            case 783472414: {
             if (ctx.message.message_id % 17 === 0) {
                 return ctx.reply(` ${authorName}, со фласком разобрался??`)
             }
@@ -134,11 +135,13 @@ bot.on('text', (ctx) => {
             }
         }
     }
-
+        break;
+    }
     // алкаши -571851178
-    if (chatId === -571851178) {
+    case -571851178: {
         // Дима Федюнин
-        if (authorId === 322914815) {
+        switch(authorId){
+            case 322914815: {
             if (ctx.message.message_id % 15 === 0) {
                 return ctx.reply(`Нюхай бебру)))`)
             }
@@ -167,11 +170,14 @@ bot.on('text', (ctx) => {
 //         }
 
         // Эва
-        if (authorId === 205169612) {
+            case 205169612: {
             if (ctx.message.message_id % 24 === 0) {
                 return ctx.reply(`${authorName}, тебе бухло разогреть?`)
             }
         }
+        }
+    }
+        break;
     }
     if (ctx.message.message_id % 23 === 0) {
         return ctx.reply(` ${authorName}, ты все выебываешься? `)
